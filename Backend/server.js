@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 // Load env first
-dotenv.config();
+dotenv.config()
 const app = express();
 const port = process.env.PORT || 8080;
 //==============models================
