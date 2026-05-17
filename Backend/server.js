@@ -34,7 +34,7 @@ databaseConnection();
 //==============Middlewares================
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://your-project.vercel.app"],
     credentials: true,
   }),
 );
@@ -73,8 +73,8 @@ app.post("/auth/signup", async (req, res) => {
     const token = generateToken(savedData._id);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      secure: true,
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     const user = await User.findById(savedData._id).select("-password");
@@ -113,8 +113,8 @@ app.post("/auth/login", async (req, res) => {
     const token = generateToken(user._id);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      secure: true,
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     const userWithoutPassword = await User.findById(user._id).select(
@@ -133,8 +133,8 @@ app.post("/auth/login", async (req, res) => {
 app.post("/auth/logout", async (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: false,
-    sameSite: "lax",
+    secure: true,
+    sameSite: "none",
   });
   res.status(200).json({
     success: true,
