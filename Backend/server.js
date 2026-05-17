@@ -34,7 +34,10 @@ databaseConnection();
 //==============Middlewares================
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://your-project.vercel.app"],
+    origin: [
+      "http://localhost:5173",
+      "https://ai-notes-workspace-eta.vercel.app",
+    ],
     credentials: true,
   }),
 );
@@ -70,6 +73,7 @@ app.post("/auth/signup", async (req, res) => {
       email,
       password: hashPassword,
     });
+    //res.cookie ==============================
     const token = generateToken(savedData._id);
     res.cookie("token", token, {
       httpOnly: true,
