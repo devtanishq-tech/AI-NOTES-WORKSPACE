@@ -1,0 +1,139 @@
+/* ============================================================
+   Navbar.css — Peblo
+   Improves: height, user pill, logout button, overall polish
+   ============================================================ */
+
+/* ── Navbar shell ────────────────────────────────────────── */
+.navbar-root {
+  height: 52px; /* Slightly taller — was 48px (h-12), feels cramped */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+  background: rgba(8, 8, 15, 0.88);
+  backdrop-filter: blur(12px);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 30;
+}
+
+/* Subtle bottom gradient line for depth */
+.navbar-root::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(124, 58, 237, 0.15),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* ── Right-side controls ─────────────────────────────────── */
+.navbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── User pill ───────────────────────────────────────────── */
+.navbar-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  padding: 4px 12px 4px 4px;
+  cursor: default;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease;
+}
+
+.navbar-user-pill:hover {
+  border-color: rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Avatar circle */
+.navbar-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
+  flex-shrink: 0;
+}
+
+.navbar-avatar-text {
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.02em;
+}
+
+.navbar-username {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+}
+
+/* ── Logout button — bigger hit target ───────────────────── */
+.navbar-logout-btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease,
+    transform 0.12s ease;
+}
+
+.navbar-logout-btn:hover {
+  color: rgba(248, 113, 113, 0.85);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.navbar-logout-btn:active {
+  transform: scale(0.93);
+}
+
+/* ── Mobile menu button ──────────────────────────────────── */
+.navbar-menu-btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    background 0.15s;
+}
+
+.navbar-menu-btn:hover {
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.06);
+}

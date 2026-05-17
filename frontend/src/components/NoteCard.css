@@ -1,0 +1,280 @@
+/* ============================================================
+   NoteCard.css — Peblo
+   Fixes: title clipping, action buttons too small, border-radius
+   content hiding, improved hover states and visual hierarchy
+   ============================================================ */
+
+/* ── Card container ──────────────────────────────────────── */
+.note-card-wrapper {
+  /* Extra padding-bottom so footer doesn't get clipped by border-radius */
+  overflow: visible !important;
+}
+
+.note-card {
+  /* Ensure content is never clipped by border-radius */
+  overflow: hidden;
+  /* Slightly more generous border-radius for modern look */
+  border-radius: 16px !important;
+  /* Smooth border transitions */
+  transition:
+    box-shadow 0.22s ease,
+    transform 0.18s ease,
+    border-color 0.22s ease,
+    background 0.22s ease !important;
+}
+
+/* ── Card inner padding — give content room to breathe ───── */
+.note-card .card-inner {
+  padding: 16px 16px 14px;
+}
+
+/* ── Title — prevent clipping, full display ──────────────── */
+.note-card-title {
+  font-size: 13.5px !important;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.45;
+  /* Allow up to 2 lines, no hard cutoff at border */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+  /* Ensure full title visible, not clipped by card edges */
+  padding-right: 4px;
+  letter-spacing: -0.01em;
+}
+
+/* ── Content preview ─────────────────────────────────────── */
+.note-card-preview {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.33);
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 6px;
+  margin-bottom: 10px;
+  word-break: break-word;
+}
+
+/* ── AI summary snippet ──────────────────────────────────── */
+.note-summary {
+  background: rgba(6, 182, 212, 0.05) !important;
+  border: 1px solid rgba(6, 182, 212, 0.12) !important;
+  border-radius: 10px !important;
+  padding: 8px 12px !important;
+  margin-bottom: 10px;
+}
+
+.note-summary p {
+  font-size: 11.5px;
+  color: rgba(6, 182, 212, 0.55);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Tags ────────────────────────────────────────────────── */
+.note-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.note-tag {
+  font-size: 10px;
+  background: rgba(124, 58, 237, 0.09);
+  color: rgba(167, 139, 250, 0.8);
+  border: 1px solid rgba(124, 58, 237, 0.14);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* ── Footer — fixed so it never clips ───────────────────── */
+.note-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  /* Strong enough to be visible without being distracting */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  /* Ensure footer is fully visible — key fix */
+  position: relative;
+  z-index: 1;
+  /* Prevent footer being hidden by overflow:hidden + border-radius */
+  margin-bottom: 0;
+}
+
+/* ── Action buttons — MUCH bigger hit targets ────────────── */
+.note-action-btn {
+  /* Minimum 32px hit target (was ~28px before) */
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.3);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease,
+    transform 0.12s ease;
+  flex-shrink: 0;
+}
+
+.note-action-btn:hover {
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.08);
+  transform: scale(1.08);
+}
+
+.note-action-btn:active {
+  transform: scale(0.92);
+}
+
+/* Specific colored hovers */
+.note-action-btn.edit:hover {
+  color: rgba(167, 139, 250, 0.9);
+  background: rgba(124, 58, 237, 0.12);
+}
+.note-action-btn.share:hover {
+  color: rgba(96, 165, 250, 0.9);
+  background: rgba(59, 130, 246, 0.1);
+}
+.note-action-btn.archive:hover {
+  color: rgba(251, 191, 36, 0.9);
+  background: rgba(245, 158, 11, 0.1);
+}
+.note-action-btn.delete:hover {
+  color: rgba(248, 113, 113, 0.9);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* AI zap button — always visible, slightly larger */
+.note-ai-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition:
+    color 0.15s,
+    background 0.15s,
+    transform 0.12s;
+  flex-shrink: 0;
+}
+
+.note-ai-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Action group — always visible at reduced opacity, full on hover */
+.note-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  /* Subtle — visible but not distracting */
+  opacity: 0.45;
+  transition: opacity 0.18s ease;
+}
+
+.note-card:hover .note-actions-group {
+  opacity: 1;
+}
+
+/* ── Time / meta info ────────────────────────────────────── */
+.note-meta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.22);
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.note-meta span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Active card state ───────────────────────────────────── */
+.note-card.note-card--active {
+  border-color: rgba(139, 92, 246, 0.4) !important;
+  background: rgba(124, 58, 237, 0.05) !important;
+  box-shadow:
+    0 0 0 1px rgba(139, 92, 246, 0.2),
+    0 8px 32px rgba(139, 92, 246, 0.07) !important;
+}
+
+/* ── AI badge ────────────────────────────────────────────── */
+.note-ai-badge {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(6, 182, 212, 0.09);
+  color: rgba(6, 182, 212, 0.8);
+  border: 1px solid rgba(6, 182, 212, 0.16);
+  padding: 2px 6px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+/* ── Grid card height consistency ────────────────────────── */
+.notes-grid {
+  display: grid;
+  gap: 12px;
+  /* Cards stretch to match tallest in row — cleaner grid */
+  align-items: start;
+}
+
+/* ── Hover gradient top accent ───────────────────────────── */
+.note-card:hover .note-card-accent-line {
+  opacity: 1;
+}
+
+.note-card-accent-line {
+  height: 1.5px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(124, 58, 237, 0.35),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+
+/* AI note top accent always visible */
+.note-card--ai .note-card-accent-line {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(6, 182, 212, 0.38),
+    transparent
+  );
+  opacity: 1;
+}

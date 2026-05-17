@@ -1,0 +1,165 @@
+/* ============================================================
+   Sidebar.css — Peblo
+   Improves: nav item sizing, logo, spacing, overall polish
+   ============================================================ */
+
+/* ── Sidebar shell ───────────────────────────────────────── */
+.sidebar-root {
+  width: 220px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Logo area ───────────────────────────────────────────── */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 14px 14px;
+  margin-bottom: 6px;
+}
+
+.sidebar-logo-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+  flex-shrink: 0;
+}
+
+.sidebar-logo-text {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  /* Gradient text */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(255, 255, 255, 0.5)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Section label ───────────────────────────────────────── */
+.sidebar-section-label {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.2);
+  padding: 0 14px;
+  margin-bottom: 6px;
+}
+
+/* ── Nav item ────────────────────────────────────────────── */
+.sidebar-nav-item {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.38);
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+  text-align: left;
+  margin-bottom: 2px;
+}
+
+.sidebar-nav-item:hover {
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Active state */
+.sidebar-nav-item.is-active {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Active background pill (animated via framer) */
+.sidebar-nav-active-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+/* Icon */
+.sidebar-nav-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.32);
+  transition: color 0.15s ease;
+}
+
+.sidebar-nav-item.is-active .sidebar-nav-icon {
+  color: #a78bfa;
+}
+
+/* Label */
+.sidebar-nav-label {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+/* Active dot */
+.sidebar-nav-dot {
+  position: relative;
+  z-index: 1;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #a78bfa;
+  box-shadow: 0 0 6px rgba(167, 139, 250, 0.5);
+  flex-shrink: 0;
+}
+
+/* ── Bottom status strip ─────────────────────────────────── */
+.sidebar-footer {
+  padding: 12px 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: auto;
+}
+
+.sidebar-footer-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+}
+
+.sidebar-footer-text {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
+}

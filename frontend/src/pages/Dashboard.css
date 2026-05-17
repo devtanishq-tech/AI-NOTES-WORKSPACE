@@ -1,0 +1,263 @@
+/* ============================================================
+   Dashboard.css — Peblo
+   Improves: toolbar, note grid, search bar, overall spacing
+   ============================================================ */
+
+/* ── Dashboard content area ──────────────────────────────── */
+.dashboard-content {
+  padding: 20px 24px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* ── Toolbar row (All Notes heading + New Note button) ───── */
+.notes-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.notes-toolbar-heading {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.notes-toolbar-count {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.25);
+  margin-top: 2px;
+  font-weight: 400;
+}
+
+/* ── New Note button — more prominent ────────────────────── */
+.btn-new-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #7c3aed;
+  color: white;
+  border-radius: 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.12s ease;
+  box-shadow:
+    0 4px 16px rgba(124, 58, 237, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.01em;
+}
+
+.btn-new-note:hover {
+  background: #6d28d9;
+  box-shadow:
+    0 6px 20px rgba(124, 58, 237, 0.4),
+    0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.btn-new-note:active {
+  transform: scale(0.97);
+}
+
+/* ── Search bar wrapper ──────────────────────────────────── */
+.search-area {
+  margin-bottom: 16px;
+}
+
+/* ── Search input overrides — better sizing ──────────────── */
+.search-input {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  font-size: 13px !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+  padding: 10px 36px 10px 38px !important;
+  width: 100%;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease !important;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.search-input:focus {
+  border-color: rgba(124, 58, 237, 0.35) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.09) !important;
+  outline: none !important;
+}
+
+/* ── Tag chips ────────────────────────────────────────────── */
+.tag-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.38);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tag-chip:hover {
+  border-color: rgba(124, 58, 237, 0.25);
+  background: rgba(124, 58, 237, 0.06);
+  color: rgba(167, 139, 250, 0.8);
+}
+
+.tag-chip.tag-chip--active {
+  background: #7c3aed;
+  border-color: rgba(167, 139, 250, 0.3);
+  color: white;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+}
+
+/* ── AI tip banner ───────────────────────────────────────── */
+.ai-tip-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(6, 182, 212, 0.04);
+  border: 1px solid rgba(6, 182, 212, 0.1);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+}
+
+.ai-tip-banner p {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.32);
+  line-height: 1.5;
+}
+
+.ai-tip-banner strong,
+.ai-tip-banner .highlight {
+  color: rgba(6, 182, 212, 0.75);
+  font-weight: 600;
+}
+
+/* ── Notes grid ───────────────────────────────────────────── */
+.notes-grid {
+  display: grid;
+  gap: 12px;
+  align-items: start;
+}
+
+/* Default: 3 columns */
+.notes-grid--default {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 768px) {
+  .notes-grid--default {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .notes-grid--default {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Narrow: 2 columns when editor is open */
+.notes-grid--editor-open {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 1024px) {
+  .notes-grid--editor-open {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Skeleton cards ──────────────────────────────────────── */
+.skeleton-card {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 16px;
+  overflow: hidden;
+}
+
+/* ── Empty state ─────────────────────────────────────────── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.empty-state-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.empty-state-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.32);
+  margin-bottom: 6px;
+}
+
+.empty-state-desc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.18);
+  margin-bottom: 20px;
+  max-width: 260px;
+  line-height: 1.6;
+}
+
+.btn-empty-create {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.22);
+  color: rgba(167, 139, 250, 0.85);
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.btn-empty-create:hover {
+  background: rgba(124, 58, 237, 0.2);
+  border-color: rgba(124, 58, 237, 0.35);
+}

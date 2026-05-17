@@ -1,0 +1,217 @@
+/* ============================================================
+   PEBLO — Design System
+   @import MUST come before everything else to fix PostCSS error
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+/* ── Reset ────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Design tokens ────────────────────────────────────────── */
+:root {
+  --color-bg: #06060f;
+  --color-bg-surface: #0a0a16;
+  --color-bg-sidebar: #08080f;
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-border-hover: rgba(255, 255, 255, 0.13);
+
+  --color-violet: #7c3aed;
+  --color-violet-soft: rgba(124, 58, 237, 0.12);
+  --color-cyan: #06b6d4;
+  --color-cyan-soft: rgba(6, 182, 212, 0.07);
+
+  --font-sans:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover:
+    0 6px 24px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.3);
+  --shadow-violet: 0 4px 20px rgba(124, 58, 237, 0.18);
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: rgba(255, 255, 255, 0.75);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* ── Scrollbars ───────────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.06) transparent;
+}
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.45);
+}
+
+/* ── Selection ────────────────────────────────────────────── */
+::selection {
+  background: rgba(124, 58, 237, 0.3);
+  color: white;
+}
+
+/* ── Focus ring ───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid rgba(124, 58, 237, 0.5);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ── Skeleton shimmer ─────────────────────────────────────── */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+.skeleton-line {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.07) 50%,
+    rgba(255, 255, 255, 0.03) 75%
+  );
+  background-size: 800px 100%;
+  animation: skeleton-shimmer 1.8s infinite linear;
+}
+
+/* ── Note card ────────────────────────────────────────────── */
+.note-card {
+  box-shadow: var(--shadow-card);
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.18s ease,
+    border-color 0.2s ease;
+}
+.note-card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.note-summary {
+  background: rgba(6, 182, 212, 0.04);
+  border: 1px solid rgba(6, 182, 212, 0.1);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────── */
+.sidebar-root {
+  position: relative;
+}
+.sidebar-root::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+.sidebar-nav-item {
+  position: relative;
+}
+
+/* ── Note editor ──────────────────────────────────────────── */
+.editor-root {
+  background: #09091a;
+}
+.editor-topbar {
+  background: rgba(9, 9, 26, 0.9);
+  backdrop-filter: blur(8px);
+}
+.editor-body {
+  background: linear-gradient(to bottom, #09091a 0%, #07071a 100%);
+}
+
+.editor-ai-btn {
+  background: linear-gradient(
+    135deg,
+    rgba(6, 182, 212, 0.1) 0%,
+    rgba(124, 58, 237, 0.08) 100%
+  );
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  color: rgba(6, 182, 212, 0.85);
+  transition: all 0.18s ease;
+}
+.editor-ai-btn:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(6, 182, 212, 0.18) 0%,
+    rgba(124, 58, 237, 0.14) 100%
+  );
+  border-color: rgba(6, 182, 212, 0.35);
+  color: rgb(6, 182, 212);
+  box-shadow: 0 2px 12px rgba(6, 182, 212, 0.12);
+}
+
+.ai-summary-block {
+  background: rgba(6, 182, 212, 0.04);
+  border: 1px solid rgba(6, 182, 212, 0.1);
+}
+
+/* ── Search bar ───────────────────────────────────────────── */
+.search-input {
+  background: rgba(255, 255, 255, 0.025);
+}
+.search-input:focus {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+}
+
+/* ── Utilities ────────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.gradient-violet {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+}
+.text-gradient {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0.4)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
